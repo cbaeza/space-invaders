@@ -29,7 +29,7 @@ class SpaceInvaders:
         self.playing = True
         self.clock = pygame.time.Clock()
 
-        self.lives = 5
+        self.life = 5
         self.score = 0
 
         self.pass_time = 0
@@ -101,7 +101,7 @@ class SpaceInvaders:
 
     def play(self):
         print(">>> playing..")
-        while self.playing and self.lives > 0:
+        while self.playing and self.life > 0:
             self.pass_time += self.clock.tick(self.FRAME_PER_SECONDS)
             if self.pass_time > self.time_between_enemies:
                 self.enemies.append(self.create_enemy())
@@ -127,8 +127,8 @@ class SpaceInvaders:
 
                 # if Ship crash with the Enemy
                 if pygame.Rect.colliderect(self.ship.rect, enemy.rect):
-                    self.lives -= 1
-                    print(f"You have {self.lives} live remain.")
+                    self.life -= 1
+                    print(f"You have {self.life} life remain.")
                     self.remove_enemy(enemy)
 
                 for bullet in self.bullets:
@@ -169,14 +169,14 @@ class SpaceInvaders:
                     elif item.type == 2:
                         self.score += 500
                     elif item.type == 3:
-                        self.lives += 1
+                        self.life += 1
                     else:
                         self.score += 50
 
                 if item.y > self.WINDOWS_HEIGHT:
                     self.items.remove(item)
 
-            text_live = self.FRONT.render(f"Live: {self.lives}", True, "white")
+            text_live = self.FRONT.render(f"Life: {self.life}", True, "white")
             text_points = self.FRONT.render(f"Score: {self.score}", True, "white")
 
             self.WINDOW.blit(text_live, (20, 20))
