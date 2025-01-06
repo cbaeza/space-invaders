@@ -25,7 +25,7 @@ or
     right: right arrow 
     up: up arrow
     down: down arrow
-    fire: tab bar
+    fire: space bar
 
 ![game.png](media/game.png)
 
